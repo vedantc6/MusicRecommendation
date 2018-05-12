@@ -13,13 +13,13 @@ if __name__ == '__main__':
 
 	# Reading into pandas dataframes
 	metadata = pd.read_csv(metadata_file)
-	# print (metadata.head())
-		
-	# Naming columns in triplet data
 	triplet = pd.read_csv(triplet_file, sep = '\t', header = None)
+	# print (metadata.head())
+
+	# Naming columns in triplet data
 	triplet.columns = ['user_id', 'song_id', 'listen_count']
 	# print (triplet.head())
-
+	
 	# On key: song_id
 	main_song_data = pd.merge(triplet, metadata.drop_duplicates(['song_id']), on = "song_id", how = "left")
 	print (main_song_data.head())
