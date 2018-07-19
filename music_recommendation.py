@@ -53,5 +53,23 @@ if __name__ == '__main__':
 	print(pbr.recommend(users[5]))
 
 	# Item-item filtering - It involves defining a co-occurence matrix which is basically for a song played by a user, how many times he has played other bunch of songs too.
+	ibs = recommender_models.item_similarity_recommender()
+	ibs.create(train_data, 'user_id', 'song')
+	user_id = users[5]
+	user_items = ibs.get_user_items(user_id)
+	print("-----------------------------------------------------")
+	print("Training data songs for userid: %s" % user_id)
+	print("-----------------------------------------------------")
 
+	for user_item in user_items:
+		print(user_item)
 
+	print("Recommending....")
+	# Recommend songs for the user using personalized item based model
+	print(ibs.recommend(user_id))
+
+	song = 'Yellow - Coldplay'
+	print(ibs.get_similar_items([song]))
+
+	# Evaluation of the models - Precision, Recall and F1 score
+	
