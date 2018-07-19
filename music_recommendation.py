@@ -45,9 +45,13 @@ if __name__ == '__main__':
 	# Train/test dataset split. Random state set at 0 for now.
 	train_data, test_data = train_test_split(main_song_data1, test_size = 0.20, random_state = 0)
 
-	# Popularity based recommendation
+	# Popularity based recommendation - This naive approach just suggests the songs listened most by users. It will be same for all the users.
 	pbr = recommender_models.popularity_recommender()
 	pbr.create(train_data, 'user_id', 'song')
 
 	# predict for some user
 	print(pbr.recommend(users[5]))
+
+	# Item-item filtering - It involves defining a co-occurence matrix which is basically for a song played by a user, how many times he has played other bunch of songs too.
+
+
